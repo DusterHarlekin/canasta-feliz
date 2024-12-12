@@ -17,11 +17,11 @@ public class Screen extends javax.swing.JFrame {
      * Creates new form Screen
      */
     CardLayout cLayout;
+    String currentView;
+    ImageIcon currentImageIcon;
     public Screen() {
         initComponents();
         cLayout = (CardLayout) (contentLayout.getLayout());
-        
-        
     }
     
     /**
@@ -33,6 +33,7 @@ public class Screen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         sideBar = new javax.swing.JPanel();
         productsButton = new javax.swing.JButton();
         inventoryButton = new javax.swing.JButton();
@@ -53,6 +54,20 @@ public class Screen extends javax.swing.JFrame {
         dashboardView = new javax.swing.JPanel();
         tableRegisterView = new javax.swing.JPanel();
         tableRegisterTitle = new javax.swing.JLabel();
+        newRegistButton = new javax.swing.JButton();
+        newProvider = new javax.swing.JPanel();
+        newProviderTitle = new javax.swing.JLabel();
+        newProduct = new javax.swing.JPanel();
+        newProductTitle = new javax.swing.JLabel();
+        newCut = new javax.swing.JPanel();
+        newCutTitle = new javax.swing.JLabel();
+        newInventory = new javax.swing.JPanel();
+        newInventoryTitle = new javax.swing.JLabel();
+        newCalc = new javax.swing.JPanel();
+        newCalcTitle = new javax.swing.JLabel();
+
+        jCheckBoxMenuItem1.setSelected(true);
+        jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -65,6 +80,7 @@ public class Screen extends javax.swing.JFrame {
         productsButton.setText("PRODUCTOS");
         productsButton.setBorderPainted(false);
         productsButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        productsButton.setName("Product"); // NOI18N
         productsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 productsButtonActionPerformed(evt);
@@ -77,6 +93,7 @@ public class Screen extends javax.swing.JFrame {
         inventoryButton.setText("INVENTARIO");
         inventoryButton.setBorderPainted(false);
         inventoryButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        inventoryButton.setName("Inventory"); // NOI18N
         inventoryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inventoryButtonActionPerformed(evt);
@@ -89,6 +106,7 @@ public class Screen extends javax.swing.JFrame {
         cutsButton.setText("CORTES");
         cutsButton.setBorderPainted(false);
         cutsButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cutsButton.setName("Cut"); // NOI18N
         cutsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cutsButtonActionPerformed(evt);
@@ -113,6 +131,7 @@ public class Screen extends javax.swing.JFrame {
         calcButton.setText("CALCULAR MERMA");
         calcButton.setBorderPainted(false);
         calcButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        calcButton.setName("Calc"); // NOI18N
         calcButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 calcButtonActionPerformed(evt);
@@ -197,6 +216,7 @@ public class Screen extends javax.swing.JFrame {
         providersButton.setText("PROVEEDORES");
         providersButton.setBorderPainted(false);
         providersButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        providersButton.setName("Provider"); // NOI18N
         providersButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 providersButtonActionPerformed(evt);
@@ -244,7 +264,7 @@ public class Screen extends javax.swing.JFrame {
             .addGroup(sideBarLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(homeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(productsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cutsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -272,7 +292,7 @@ public class Screen extends javax.swing.JFrame {
                 .addComponent(helpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addContainerGap())
         );
 
         contentLayout.setBackground(new java.awt.Color(255, 255, 255));
@@ -284,7 +304,7 @@ public class Screen extends javax.swing.JFrame {
         dashboardView.setLayout(dashboardViewLayout);
         dashboardViewLayout.setHorizontalGroup(
             dashboardViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 848, Short.MAX_VALUE)
+            .addGap(0, 945, Short.MAX_VALUE)
         );
         dashboardViewLayout.setVerticalGroup(
             dashboardViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,6 +320,16 @@ public class Screen extends javax.swing.JFrame {
         tableRegisterTitle.setText("Titulo");
         tableRegisterTitle.setMaximumSize(new java.awt.Dimension(550, 512));
 
+        newRegistButton.setBackground(new java.awt.Color(101, 183, 65));
+        newRegistButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        newRegistButton.setForeground(new java.awt.Color(245, 245, 245));
+        newRegistButton.setText("NUEVO");
+        newRegistButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newRegistButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout tableRegisterViewLayout = new javax.swing.GroupLayout(tableRegisterView);
         tableRegisterView.setLayout(tableRegisterViewLayout);
         tableRegisterViewLayout.setHorizontalGroup(
@@ -307,17 +337,166 @@ public class Screen extends javax.swing.JFrame {
             .addGroup(tableRegisterViewLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(tableRegisterTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(739, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 638, Short.MAX_VALUE)
+                .addComponent(newRegistButton, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
         );
         tableRegisterViewLayout.setVerticalGroup(
             tableRegisterViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tableRegisterViewLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tableRegisterTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(tableRegisterViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tableRegisterTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newRegistButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(816, Short.MAX_VALUE))
         );
 
         contentLayout.add(tableRegisterView, "tableRegisterView");
+
+        newProvider.setBackground(new java.awt.Color(255, 255, 255));
+        newProvider.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        newProvider.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+
+        newProviderTitle.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        newProviderTitle.setForeground(new java.awt.Color(51, 51, 51));
+        newProviderTitle.setText("Nuevo producto");
+        newProviderTitle.setMaximumSize(new java.awt.Dimension(550, 512));
+        newProviderTitle.setName("newProductTitle"); // NOI18N
+
+        javax.swing.GroupLayout newProviderLayout = new javax.swing.GroupLayout(newProvider);
+        newProvider.setLayout(newProviderLayout);
+        newProviderLayout.setHorizontalGroup(
+            newProviderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(newProviderLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(newProviderTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(659, Short.MAX_VALUE))
+        );
+        newProviderLayout.setVerticalGroup(
+            newProviderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(newProviderLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(newProviderTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(816, Short.MAX_VALUE))
+        );
+
+        contentLayout.add(newProvider, "newProvider");
+
+        newProduct.setBackground(new java.awt.Color(255, 255, 255));
+        newProduct.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        newProduct.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+
+        newProductTitle.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        newProductTitle.setForeground(new java.awt.Color(51, 51, 51));
+        newProductTitle.setText("Nuevo producto");
+        newProductTitle.setMaximumSize(new java.awt.Dimension(550, 512));
+        newProductTitle.setName("newProductTitle"); // NOI18N
+
+        javax.swing.GroupLayout newProductLayout = new javax.swing.GroupLayout(newProduct);
+        newProduct.setLayout(newProductLayout);
+        newProductLayout.setHorizontalGroup(
+            newProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(newProductLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(newProductTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(659, Short.MAX_VALUE))
+        );
+        newProductLayout.setVerticalGroup(
+            newProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(newProductLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(newProductTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(816, Short.MAX_VALUE))
+        );
+
+        contentLayout.add(newProduct, "newProduct");
+
+        newCut.setBackground(new java.awt.Color(255, 255, 255));
+        newCut.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        newCut.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+
+        newCutTitle.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        newCutTitle.setForeground(new java.awt.Color(51, 51, 51));
+        newCutTitle.setText("Nuevo producto");
+        newCutTitle.setMaximumSize(new java.awt.Dimension(550, 512));
+        newCutTitle.setName("newProductTitle"); // NOI18N
+
+        javax.swing.GroupLayout newCutLayout = new javax.swing.GroupLayout(newCut);
+        newCut.setLayout(newCutLayout);
+        newCutLayout.setHorizontalGroup(
+            newCutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(newCutLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(newCutTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(659, Short.MAX_VALUE))
+        );
+        newCutLayout.setVerticalGroup(
+            newCutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(newCutLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(newCutTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(816, Short.MAX_VALUE))
+        );
+
+        contentLayout.add(newCut, "newCut");
+
+        newInventory.setBackground(new java.awt.Color(255, 255, 255));
+        newInventory.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        newInventory.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+
+        newInventoryTitle.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        newInventoryTitle.setForeground(new java.awt.Color(51, 51, 51));
+        newInventoryTitle.setText("Nuevo producto");
+        newInventoryTitle.setMaximumSize(new java.awt.Dimension(550, 512));
+        newInventoryTitle.setName("newProductTitle"); // NOI18N
+
+        javax.swing.GroupLayout newInventoryLayout = new javax.swing.GroupLayout(newInventory);
+        newInventory.setLayout(newInventoryLayout);
+        newInventoryLayout.setHorizontalGroup(
+            newInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(newInventoryLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(newInventoryTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(659, Short.MAX_VALUE))
+        );
+        newInventoryLayout.setVerticalGroup(
+            newInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(newInventoryLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(newInventoryTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(816, Short.MAX_VALUE))
+        );
+
+        contentLayout.add(newInventory, "newInventory");
+
+        newCalc.setBackground(new java.awt.Color(255, 255, 255));
+        newCalc.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        newCalc.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+
+        newCalcTitle.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        newCalcTitle.setForeground(new java.awt.Color(51, 51, 51));
+        newCalcTitle.setText("Nuevo producto");
+        newCalcTitle.setMaximumSize(new java.awt.Dimension(550, 512));
+        newCalcTitle.setName("newProductTitle"); // NOI18N
+
+        javax.swing.GroupLayout newCalcLayout = new javax.swing.GroupLayout(newCalc);
+        newCalc.setLayout(newCalcLayout);
+        newCalcLayout.setHorizontalGroup(
+            newCalcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(newCalcLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(newCalcTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(659, Short.MAX_VALUE))
+        );
+        newCalcLayout.setVerticalGroup(
+            newCalcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(newCalcLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(newCalcTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(816, Short.MAX_VALUE))
+        );
+
+        contentLayout.add(newCalc, "newCalc");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -369,7 +548,8 @@ public class Screen extends javax.swing.JFrame {
         // TODO add your handling code here:
         cLayout.show(contentLayout, "tableRegisterView");
         tableRegisterTitle.setText("Proveedores");
-        tableRegisterTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/providers.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
+        currentView = providersButton.getName();
+        tableRegisterTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconProvider.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
         System.out.println(tableRegisterTitle.getIcon());
         /*
         contentLayout.removeAll();
@@ -387,30 +567,54 @@ public class Screen extends javax.swing.JFrame {
     private void productsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productsButtonActionPerformed
         // TODO add your handling code here:
         cLayout.show(contentLayout, "tableRegisterView");
+        currentView = productsButton.getName();
+        
         tableRegisterTitle.setText("Productos");
-        tableRegisterTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/products.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
+        tableRegisterTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconProduct.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_productsButtonActionPerformed
 
     private void cutsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutsButtonActionPerformed
         // TODO add your handling code here:
         cLayout.show(contentLayout, "tableRegisterView");
+        currentView = cutsButton.getName();
         tableRegisterTitle.setText("Cortes");
-        tableRegisterTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/cuts.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
+        tableRegisterTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconCut.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_cutsButtonActionPerformed
 
     private void inventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryButtonActionPerformed
         // TODO add your handling code here:
         cLayout.show(contentLayout, "tableRegisterView");
+        currentView = inventoryButton.getName();
         tableRegisterTitle.setText("Inventario");
-        tableRegisterTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/inventory.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
+        tableRegisterTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconInventory.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_inventoryButtonActionPerformed
 
     private void calcButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcButtonActionPerformed
         // TODO add your handling code here:
         cLayout.show(contentLayout, "tableRegisterView");
+        currentView = calcButton.getName();
         tableRegisterTitle.setText("Calcular merma");
-        tableRegisterTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/calc.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
+        tableRegisterTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconCalc.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_calcButtonActionPerformed
+
+    private void newRegistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newRegistButtonActionPerformed
+        // TODO add your handling code here:
+        System.out.println(currentView);
+        cLayout.show(contentLayout, "new"+currentView);
+        switch (currentView){
+            case "Product":
+                newProductTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconProduct.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
+            case "Provider":
+                newProviderTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconProvider.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
+            case "Cut":
+                newCutTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconCut.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
+            case "Inventory":
+                newInventoryTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconInventory.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
+            case "Calc":
+                newCalcTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconCalc.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
+        
+        }
+    }//GEN-LAST:event_newRegistButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -458,9 +662,21 @@ public class Screen extends javax.swing.JFrame {
     private javax.swing.JButton homeButton;
     private javax.swing.JButton inventoryButton;
     private javax.swing.JButton inventoryReportButton;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton kitchenReportButton;
+    private javax.swing.JPanel newCalc;
+    private javax.swing.JLabel newCalcTitle;
+    private javax.swing.JPanel newCut;
+    private javax.swing.JLabel newCutTitle;
+    private javax.swing.JPanel newInventory;
+    private javax.swing.JLabel newInventoryTitle;
+    private javax.swing.JPanel newProduct;
+    private javax.swing.JLabel newProductTitle;
+    private javax.swing.JPanel newProvider;
+    private javax.swing.JLabel newProviderTitle;
+    private javax.swing.JButton newRegistButton;
     private javax.swing.JButton productLoseReportButton;
     private javax.swing.JButton productsButton;
     private javax.swing.JButton providersButton;
