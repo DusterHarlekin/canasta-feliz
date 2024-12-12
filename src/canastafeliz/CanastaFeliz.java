@@ -1,28 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package canastafeliz;
+import controller.Controller;
 import static javax.swing.JOptionPane.showMessageDialog;
 import view.Screen;
+import model.Model;
 
-/**
- *
- * @author rogerguedez
- */
 public class CanastaFeliz {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        Screen screen = new Screen();
-        screen.setVisible(true);
+        Model modelo = new Model();
+        Screen vista = new Screen();        
+        Controller controlador = new Controller( vista , modelo );
         
-        screen.setLocationRelativeTo(null);
-        
-       showMessageDialog(null, "This is even shorter");
+        controlador.iniciarVista();
+       
     }
     
 }

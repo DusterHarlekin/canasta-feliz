@@ -55,6 +55,8 @@ public class Screen extends javax.swing.JFrame {
         tableRegisterView = new javax.swing.JPanel();
         tableRegisterTitle = new javax.swing.JLabel();
         newRegistButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        registerTable = new javax.swing.JTable();
         newProvider = new javax.swing.JPanel();
         newProviderTitle = new javax.swing.JLabel();
         newProduct = new javax.swing.JPanel();
@@ -330,15 +332,34 @@ public class Screen extends javax.swing.JFrame {
             }
         });
 
+        registerTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        registerTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(registerTable);
+
         javax.swing.GroupLayout tableRegisterViewLayout = new javax.swing.GroupLayout(tableRegisterView);
         tableRegisterView.setLayout(tableRegisterViewLayout);
         tableRegisterViewLayout.setHorizontalGroup(
             tableRegisterViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tableRegisterViewLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tableRegisterViewLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tableRegisterTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 638, Short.MAX_VALUE)
-                .addComponent(newRegistButton, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(tableRegisterViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(tableRegisterViewLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 874, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(tableRegisterViewLayout.createSequentialGroup()
+                        .addComponent(tableRegisterTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 638, Short.MAX_VALUE)
+                        .addComponent(newRegistButton, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(49, 49, 49))
         );
         tableRegisterViewLayout.setVerticalGroup(
@@ -348,7 +369,9 @@ public class Screen extends javax.swing.JFrame {
                 .addGroup(tableRegisterViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(tableRegisterTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(newRegistButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(816, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(313, Short.MAX_VALUE))
         );
 
         contentLayout.add(tableRegisterView, "tableRegisterView");
@@ -655,7 +678,7 @@ public class Screen extends javax.swing.JFrame {
     private javax.swing.JButton calcButton;
     private javax.swing.JButton configButton;
     private javax.swing.JPanel contentLayout;
-    private javax.swing.JButton cutsButton;
+    public javax.swing.JButton cutsButton;
     private javax.swing.JPanel dashboardView;
     private javax.swing.JButton exitButton;
     private javax.swing.JButton helpButton;
@@ -663,6 +686,7 @@ public class Screen extends javax.swing.JFrame {
     private javax.swing.JButton inventoryButton;
     private javax.swing.JButton inventoryReportButton;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton kitchenReportButton;
@@ -678,8 +702,9 @@ public class Screen extends javax.swing.JFrame {
     private javax.swing.JLabel newProviderTitle;
     private javax.swing.JButton newRegistButton;
     private javax.swing.JButton productLoseReportButton;
-    private javax.swing.JButton productsButton;
-    private javax.swing.JButton providersButton;
+    public javax.swing.JButton productsButton;
+    public javax.swing.JButton providersButton;
+    public javax.swing.JTable registerTable;
     private javax.swing.JPanel sideBar;
     private javax.swing.JButton supervisorReportButton;
     private javax.swing.JLabel tableRegisterTitle;
