@@ -5,6 +5,8 @@
  */
 package view;
 import java.awt.CardLayout;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 /**
  *
  * @author rogerguedez
@@ -18,6 +20,8 @@ public class Screen extends javax.swing.JFrame {
     public Screen() {
         initComponents();
         cLayout = (CardLayout) (contentLayout.getLayout());
+        
+        
     }
     
     /**
@@ -34,116 +38,177 @@ public class Screen extends javax.swing.JFrame {
         inventoryButton = new javax.swing.JButton();
         cutsButton = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton4 = new javax.swing.JButton();
+        exitButton = new javax.swing.JButton();
         calcButton = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         kitchenReportButton = new javax.swing.JButton();
         supervisorReportButton = new javax.swing.JButton();
         inventoryReportButton = new javax.swing.JButton();
         productLoseReportButton = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        configButton = new javax.swing.JButton();
+        helpButton = new javax.swing.JButton();
         providersButton = new javax.swing.JButton();
         homeButton = new javax.swing.JButton();
         contentLayout = new javax.swing.JPanel();
         dashboardView = new javax.swing.JPanel();
         tableRegisterView = new javax.swing.JPanel();
+        tableRegisterTitle = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        productsButton.setText("Productos");
+        sideBar.setBackground(new java.awt.Color(101, 183, 65));
+
+        productsButton.setBackground(new java.awt.Color(101, 183, 65));
+        productsButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        productsButton.setForeground(new java.awt.Color(245, 245, 245));
+        productsButton.setText("PRODUCTOS");
+        productsButton.setBorderPainted(false);
+        productsButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         productsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 productsButtonActionPerformed(evt);
             }
         });
 
-        inventoryButton.setText("Inventario");
+        inventoryButton.setBackground(new java.awt.Color(101, 183, 65));
+        inventoryButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        inventoryButton.setForeground(new java.awt.Color(245, 245, 245));
+        inventoryButton.setText("INVENTARIO");
+        inventoryButton.setBorderPainted(false);
+        inventoryButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         inventoryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inventoryButtonActionPerformed(evt);
             }
         });
 
-        cutsButton.setText("Cortes");
+        cutsButton.setBackground(new java.awt.Color(101, 183, 65));
+        cutsButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cutsButton.setForeground(new java.awt.Color(245, 245, 245));
+        cutsButton.setText("CORTES");
+        cutsButton.setBorderPainted(false);
+        cutsButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         cutsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cutsButtonActionPerformed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton4.setText("SALIR");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        exitButton.setBackground(new java.awt.Color(101, 183, 65));
+        exitButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        exitButton.setForeground(new java.awt.Color(245, 245, 245));
+        exitButton.setText("SALIR");
+        exitButton.setBorderPainted(false);
+        exitButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                exitButtonActionPerformed(evt);
             }
         });
 
-        calcButton.setText("Calcular merma");
+        calcButton.setBackground(new java.awt.Color(101, 183, 65));
+        calcButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        calcButton.setForeground(new java.awt.Color(245, 245, 245));
+        calcButton.setText("CALCULAR MERMA");
+        calcButton.setBorderPainted(false);
+        calcButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         calcButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 calcButtonActionPerformed(evt);
             }
         });
 
-        kitchenReportButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        kitchenReportButton.setText("Movimientos en cocina");
+        kitchenReportButton.setBackground(new java.awt.Color(101, 183, 65));
+        kitchenReportButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        kitchenReportButton.setForeground(new java.awt.Color(245, 245, 245));
+        kitchenReportButton.setText("MOVIMIENTOS EN COCINA");
+        kitchenReportButton.setBorderPainted(false);
+        kitchenReportButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         kitchenReportButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kitchenReportButtonActionPerformed(evt);
             }
         });
 
-        supervisorReportButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        supervisorReportButton.setText("Movimientos por encargado");
+        supervisorReportButton.setBackground(new java.awt.Color(101, 183, 65));
+        supervisorReportButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        supervisorReportButton.setForeground(new java.awt.Color(245, 245, 245));
+        supervisorReportButton.setText("MOVIMIENTOS POR ENCARGADO");
+        supervisorReportButton.setBorderPainted(false);
+        supervisorReportButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         supervisorReportButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 supervisorReportButtonActionPerformed(evt);
             }
         });
 
-        inventoryReportButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        inventoryReportButton.setText("Movimientos en cocina");
+        inventoryReportButton.setBackground(new java.awt.Color(101, 183, 65));
+        inventoryReportButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        inventoryReportButton.setForeground(new java.awt.Color(245, 245, 245));
+        inventoryReportButton.setText("MOVIMIENTOS DE INVENTARIO");
+        inventoryReportButton.setBorderPainted(false);
+        inventoryReportButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         inventoryReportButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inventoryReportButtonActionPerformed(evt);
             }
         });
 
-        productLoseReportButton.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        productLoseReportButton.setText("Merma por producto");
+        productLoseReportButton.setBackground(new java.awt.Color(101, 183, 65));
+        productLoseReportButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        productLoseReportButton.setForeground(new java.awt.Color(245, 245, 245));
+        productLoseReportButton.setText("MERMA POR PRODUCTO");
+        productLoseReportButton.setBorderPainted(false);
+        productLoseReportButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         productLoseReportButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 productLoseReportButtonActionPerformed(evt);
             }
         });
 
-        jButton10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton10.setText("MANTENIMIENTO");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        configButton.setBackground(new java.awt.Color(101, 183, 65));
+        configButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        configButton.setForeground(new java.awt.Color(245, 245, 245));
+        configButton.setText("MANTENIMIENTO");
+        configButton.setBorderPainted(false);
+        configButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        configButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                configButtonActionPerformed(evt);
             }
         });
 
-        jButton11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton11.setText("AYUDA");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
+        helpButton.setBackground(new java.awt.Color(101, 183, 65));
+        helpButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        helpButton.setForeground(new java.awt.Color(245, 245, 245));
+        helpButton.setText("AYUDA");
+        helpButton.setBorderPainted(false);
+        helpButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        helpButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
+                helpButtonActionPerformed(evt);
             }
         });
 
-        providersButton.setText("Proveedores");
+        providersButton.setBackground(new java.awt.Color(101, 183, 65));
+        providersButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        providersButton.setForeground(new java.awt.Color(245, 245, 245));
+        providersButton.setText("PROVEEDORES");
+        providersButton.setBorderPainted(false);
+        providersButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         providersButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 providersButtonActionPerformed(evt);
             }
         });
 
+        homeButton.setBackground(new java.awt.Color(101, 183, 65));
+        homeButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        homeButton.setForeground(new java.awt.Color(245, 245, 245));
         homeButton.setText("TABLERO");
+        homeButton.setBorderPainted(false);
+        homeButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         homeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeButtonActionPerformed(evt);
@@ -161,14 +226,14 @@ public class Screen extends javax.swing.JFrame {
                     .addComponent(inventoryButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                     .addComponent(cutsButton, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                    .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                     .addComponent(calcButton, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                     .addComponent(jSeparator2)
                     .addComponent(kitchenReportButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                     .addComponent(supervisorReportButton, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                     .addComponent(inventoryReportButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
-                    .addComponent(jButton10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                    .addComponent(helpButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                    .addComponent(configButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                     .addComponent(productLoseReportButton, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                     .addComponent(providersButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                     .addComponent(homeButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -202,18 +267,18 @@ public class Screen extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(productLoseReportButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(configButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(helpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
 
         contentLayout.setBackground(new java.awt.Color(255, 255, 255));
         contentLayout.setLayout(new java.awt.CardLayout());
 
-        dashboardView.setBackground(new java.awt.Color(102, 255, 51));
+        dashboardView.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout dashboardViewLayout = new javax.swing.GroupLayout(dashboardView);
         dashboardView.setLayout(dashboardViewLayout);
@@ -228,17 +293,28 @@ public class Screen extends javax.swing.JFrame {
 
         contentLayout.add(dashboardView, "dashboardView");
 
-        tableRegisterView.setBackground(new java.awt.Color(204, 102, 255));
+        tableRegisterView.setBackground(new java.awt.Color(255, 255, 255));
+
+        tableRegisterTitle.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        tableRegisterTitle.setForeground(new java.awt.Color(51, 51, 51));
+        tableRegisterTitle.setText("Titulo");
+        tableRegisterTitle.setMaximumSize(new java.awt.Dimension(550, 512));
 
         javax.swing.GroupLayout tableRegisterViewLayout = new javax.swing.GroupLayout(tableRegisterView);
         tableRegisterView.setLayout(tableRegisterViewLayout);
         tableRegisterViewLayout.setHorizontalGroup(
             tableRegisterViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 848, Short.MAX_VALUE)
+            .addGroup(tableRegisterViewLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tableRegisterTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(739, Short.MAX_VALUE))
         );
         tableRegisterViewLayout.setVerticalGroup(
             tableRegisterViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 875, Short.MAX_VALUE)
+            .addGroup(tableRegisterViewLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tableRegisterTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(816, Short.MAX_VALUE))
         );
 
         contentLayout.add(tableRegisterView, "tableRegisterView");
@@ -261,9 +337,9 @@ public class Screen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_exitButtonActionPerformed
 
     private void kitchenReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kitchenReportButtonActionPerformed
         // TODO add your handling code here:
@@ -281,17 +357,20 @@ public class Screen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_productLoseReportButtonActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void configButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_configButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_configButtonActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+    private void helpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton11ActionPerformed
+    }//GEN-LAST:event_helpButtonActionPerformed
 
     private void providersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_providersButtonActionPerformed
         // TODO add your handling code here:
         cLayout.show(contentLayout, "tableRegisterView");
+        tableRegisterTitle.setText("Proveedores");
+        tableRegisterTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/providers.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
+        System.out.println(tableRegisterTitle.getIcon());
         /*
         contentLayout.removeAll();
         contentLayout.add(dashboardView);
@@ -308,21 +387,29 @@ public class Screen extends javax.swing.JFrame {
     private void productsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productsButtonActionPerformed
         // TODO add your handling code here:
         cLayout.show(contentLayout, "tableRegisterView");
+        tableRegisterTitle.setText("Productos");
+        tableRegisterTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/products.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_productsButtonActionPerformed
 
     private void cutsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutsButtonActionPerformed
         // TODO add your handling code here:
         cLayout.show(contentLayout, "tableRegisterView");
+        tableRegisterTitle.setText("Cortes");
+        tableRegisterTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/cuts.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_cutsButtonActionPerformed
 
     private void inventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryButtonActionPerformed
         // TODO add your handling code here:
         cLayout.show(contentLayout, "tableRegisterView");
+        tableRegisterTitle.setText("Inventario");
+        tableRegisterTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/inventory.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_inventoryButtonActionPerformed
 
     private void calcButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcButtonActionPerformed
         // TODO add your handling code here:
         cLayout.show(contentLayout, "tableRegisterView");
+        tableRegisterTitle.setText("Calcular merma");
+        tableRegisterTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/calc.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_calcButtonActionPerformed
 
     /**
@@ -362,15 +449,15 @@ public class Screen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton calcButton;
+    private javax.swing.JButton configButton;
     private javax.swing.JPanel contentLayout;
     private javax.swing.JButton cutsButton;
     private javax.swing.JPanel dashboardView;
+    private javax.swing.JButton exitButton;
+    private javax.swing.JButton helpButton;
     private javax.swing.JButton homeButton;
     private javax.swing.JButton inventoryButton;
     private javax.swing.JButton inventoryReportButton;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton kitchenReportButton;
@@ -379,6 +466,7 @@ public class Screen extends javax.swing.JFrame {
     private javax.swing.JButton providersButton;
     private javax.swing.JPanel sideBar;
     private javax.swing.JButton supervisorReportButton;
+    private javax.swing.JLabel tableRegisterTitle;
     private javax.swing.JPanel tableRegisterView;
     // End of variables declaration//GEN-END:variables
 }
