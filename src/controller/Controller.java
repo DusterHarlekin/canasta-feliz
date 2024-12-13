@@ -12,6 +12,8 @@ import model.Model;
 import view.Screen;
 import controller.Validation;
 import java.awt.Image;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import view.ComboItem;
@@ -25,6 +27,41 @@ public class Controller {
         this.vista = vista;
         this.modelo = modelo;
         
+        this.vista.calcDecreaseProductSelect.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Object boxItem = vista.calcDecreaseProductSelect.getSelectedItem();
+                if (((ComboItem) boxItem).getValue() != null) {
+                    int idProducto = Integer.parseInt(((ComboItem) boxItem).getValue());
+                    vista.calcDecreaseDateSelect.setEnabled(true);
+                    try {
+                        ResultSet rs = modelo.getInvProductDates(idProducto);
+
+                        DefaultComboBoxModel boxModel = new DefaultComboBoxModel();
+                        boxModel.addElement(new ComboItem("Seleccione una fecha", null));
+                        while (rs.next()) {
+                            //newProductProviderSelect.a (new ComboItem(rs.getString("rif")+ " " + rs.getString("nombre"), rs.getInt("id_proveedor")));
+                            //USEN ESTE MÉTODO
+                            boxModel.addElement(new ComboItem(rs.getString("fecha_entrada"), rs.getString("fecha_entrada")));
+
+                        }
+                        vista.calcDecreaseDateSelect.setModel(boxModel);
+
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Screen.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else{
+                    DefaultComboBoxModel boxModel = new DefaultComboBoxModel();
+                    boxModel.addElement(new ComboItem("", null));
+                    vista.calcDecreaseDateSelect.setModel(boxModel);
+                    vista.calcDecreaseDateSelect.setEnabled(false);
+                }
+
+            }
+        });
+        
+        
+
+        
         //GET
         
         this.vista.newRegistButton.addActionListener(new ActionListener() {
@@ -36,7 +73,7 @@ public class Controller {
                         vista.newProductTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconProduct.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
                     case "Provider":
                         vista.newProviderTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconProvider.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
-                         {
+                         
                             try {
                                 ResultSet rs = modelo.getProviders();
 
@@ -53,10 +90,10 @@ public class Controller {
                             } catch (SQLException ex) {
                                 Logger.getLogger(Screen.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                        }
+                        
                     case "Inventory":
                         vista.newInventoryTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconInventory.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
-                        {
+                        
                             try {
                                 ResultSet rs = modelo.getProducts();
 
@@ -71,12 +108,31 @@ public class Controller {
                             } catch (SQLException ex) {
                                 Logger.getLogger(Screen.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                        }
-                        
-                    case "Calc":
-                        vista.newCalcTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconCalc.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
-
                 }
+            }
+        });
+        
+        this.vista.calcButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vista.cLayout.show(vista.contentLayout, "calcDecrease");
+                vista.currentView = vista.calcButton.getName();
+                vista.calcDecreaseTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconCalc.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
+                try {
+                    ResultSet rsProducts = modelo.getProducts();
+                    //ResultSet rsInventory = modelo.getInvProducts();
+                    DefaultComboBoxModel boxModel = new DefaultComboBoxModel();
+                    boxModel.addElement(new ComboItem("Seleccione un producto", null));
+                    while (rsProducts.next()) {
+                        boxModel.addElement(new ComboItem(rsProducts.getString(2), rsProducts.getString(1)));
+                    }
+                    vista.calcDecreaseProductSelect.setModel(boxModel);
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(Screen.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                
             }
         });
         
@@ -253,7 +309,7 @@ public class Controller {
                 
                 
                 String pesoInicial = vista.newInvKgInitial.getText();
-                int idProducto =Integer.parseInt(((ComboItem)boxItem).getValue());
+                int idProducto = Integer.parseInt(((ComboItem)boxItem).getValue());
                         
                 if (Validation.validarDouble(pesoInicial)) {
                     

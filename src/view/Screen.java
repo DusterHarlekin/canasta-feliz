@@ -84,8 +84,6 @@ public class Screen extends javax.swing.JFrame {
         newProductBtn = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         newProductProviderSelect = new javax.swing.JComboBox<>();
-        newCut = new javax.swing.JPanel();
-        newCutTitle = new javax.swing.JLabel();
         newInventory = new javax.swing.JPanel();
         newInventoryTitle = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -93,8 +91,27 @@ public class Screen extends javax.swing.JFrame {
         newInvKgInitial = new javax.swing.JTextField();
         newInvProductSelect = new javax.swing.JComboBox<>();
         newInvProductBtn = new javax.swing.JButton();
-        newCalc = new javax.swing.JPanel();
-        newCalcTitle = new javax.swing.JLabel();
+        calcDecrease = new javax.swing.JPanel();
+        calcDecreaseTitle = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        calcDecreaseProductSelect = new javax.swing.JComboBox<>();
+        jLabel14 = new javax.swing.JLabel();
+        calcDecreaseUseKg = new javax.swing.JTextField();
+        calcDecreaseBtn = new javax.swing.JButton();
+        calcDecreaseCurrentKg = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        calcDecreaseAverage = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        calcDecreaseReal = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        calcDecreaseDiff = new javax.swing.JLabel();
+        calcDecreaseDateSelect = new javax.swing.JComboBox<>();
+        jLabel20 = new javax.swing.JLabel();
+        calcDecreaseCurrentInv = new javax.swing.JLabel();
+        calcDecreaseNewInv = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
 
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
@@ -318,7 +335,7 @@ public class Screen extends javax.swing.JFrame {
         dashboardView.setLayout(dashboardViewLayout);
         dashboardViewLayout.setHorizontalGroup(
             dashboardViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 945, Short.MAX_VALUE)
+            .addGap(0, 956, Short.MAX_VALUE)
         );
         dashboardViewLayout.setVerticalGroup(
             dashboardViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -370,7 +387,7 @@ public class Screen extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 874, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(tableRegisterViewLayout.createSequentialGroup()
                         .addComponent(tableRegisterTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 638, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 649, Short.MAX_VALUE)
                         .addComponent(newRegistButton, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(49, 49, 49))
         );
@@ -483,7 +500,7 @@ public class Screen extends javax.swing.JFrame {
                     .addComponent(jScrollPane2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newProviderLayout.createSequentialGroup()
-                .addContainerGap(456, Short.MAX_VALUE)
+                .addContainerGap(467, Short.MAX_VALUE)
                 .addComponent(newProviderBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(377, 377, 377))
         );
@@ -578,7 +595,7 @@ public class Screen extends javax.swing.JFrame {
         newProductLayout.setHorizontalGroup(
             newProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newProductLayout.createSequentialGroup()
-                .addContainerGap(452, Short.MAX_VALUE)
+                .addContainerGap(463, Short.MAX_VALUE)
                 .addComponent(newProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(381, 381, 381))
             .addGroup(newProductLayout.createSequentialGroup()
@@ -624,35 +641,6 @@ public class Screen extends javax.swing.JFrame {
 
         contentLayout.add(newProduct, "newProduct");
 
-        newCut.setBackground(new java.awt.Color(255, 255, 255));
-        newCut.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        newCut.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-
-        newCutTitle.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        newCutTitle.setForeground(new java.awt.Color(51, 51, 51));
-        newCutTitle.setText("Nuevo producto");
-        newCutTitle.setMaximumSize(new java.awt.Dimension(550, 512));
-        newCutTitle.setName("newProductTitle"); // NOI18N
-
-        javax.swing.GroupLayout newCutLayout = new javax.swing.GroupLayout(newCut);
-        newCut.setLayout(newCutLayout);
-        newCutLayout.setHorizontalGroup(
-            newCutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(newCutLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(newCutTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(659, Short.MAX_VALUE))
-        );
-        newCutLayout.setVerticalGroup(
-            newCutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(newCutLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(newCutTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(816, Short.MAX_VALUE))
-        );
-
-        contentLayout.add(newCut, "newCut");
-
         newInventory.setBackground(new java.awt.Color(255, 255, 255));
         newInventory.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         newInventory.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
@@ -695,7 +683,7 @@ public class Screen extends javax.swing.JFrame {
                     .addComponent(newInvKgInitial)
                     .addComponent(jLabel12)
                     .addComponent(newInvProductSelect, 0, 474, Short.MAX_VALUE))
-                .addContainerGap(461, Short.MAX_VALUE))
+                .addContainerGap(472, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newInventoryLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(newInvProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -721,34 +709,207 @@ public class Screen extends javax.swing.JFrame {
 
         contentLayout.add(newInventory, "newInventory");
 
-        newCalc.setBackground(new java.awt.Color(255, 255, 255));
-        newCalc.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        newCalc.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        calcDecrease.setBackground(new java.awt.Color(255, 255, 255));
+        calcDecrease.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        calcDecrease.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
 
-        newCalcTitle.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        newCalcTitle.setForeground(new java.awt.Color(51, 51, 51));
-        newCalcTitle.setText("Nuevo producto");
-        newCalcTitle.setMaximumSize(new java.awt.Dimension(550, 512));
-        newCalcTitle.setName("newProductTitle"); // NOI18N
+        calcDecreaseTitle.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        calcDecreaseTitle.setForeground(new java.awt.Color(51, 51, 51));
+        calcDecreaseTitle.setText("Calcular merma");
+        calcDecreaseTitle.setMaximumSize(new java.awt.Dimension(550, 512));
+        calcDecreaseTitle.setName("newProductTitle"); // NOI18N
 
-        javax.swing.GroupLayout newCalcLayout = new javax.swing.GroupLayout(newCalc);
-        newCalc.setLayout(newCalcLayout);
-        newCalcLayout.setHorizontalGroup(
-            newCalcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(newCalcLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(newCalcTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(659, Short.MAX_VALUE))
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel13.setText("Producto");
+
+        calcDecreaseProductSelect.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        calcDecreaseProductSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calcDecreaseProductSelectActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel14.setText("Cantidad a utilizar (Kg)");
+
+        calcDecreaseUseKg.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        calcDecreaseUseKg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calcDecreaseUseKgActionPerformed(evt);
+            }
+        });
+
+        calcDecreaseBtn.setBackground(new java.awt.Color(255, 181, 52));
+        calcDecreaseBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        calcDecreaseBtn.setForeground(new java.awt.Color(245, 245, 245));
+        calcDecreaseBtn.setText("REGISTRAR");
+
+        calcDecreaseCurrentKg.setFont(new java.awt.Font("Segoe UI", 1, 74)); // NOI18N
+        calcDecreaseCurrentKg.setForeground(new java.awt.Color(101, 183, 65));
+        calcDecreaseCurrentKg.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        calcDecreaseCurrentKg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calcDecreaseCurrentKgActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel15.setText("Promedio");
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel16.setText("Peso actual (Kg)");
+
+        calcDecreaseAverage.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        calcDecreaseAverage.setForeground(new java.awt.Color(255, 181, 52));
+        calcDecreaseAverage.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        calcDecreaseAverage.setText("0%");
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel17.setText("Merma real");
+
+        calcDecreaseReal.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        calcDecreaseReal.setForeground(new java.awt.Color(101, 183, 65));
+        calcDecreaseReal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        calcDecreaseReal.setText("0%");
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel18.setText("Fecha de ingreso");
+
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel19.setText("Diferencia");
+
+        calcDecreaseDiff.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        calcDecreaseDiff.setForeground(new java.awt.Color(212, 28, 34));
+        calcDecreaseDiff.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        calcDecreaseDiff.setText("0%");
+
+        calcDecreaseDateSelect.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        calcDecreaseDateSelect.setEnabled(false);
+        calcDecreaseDateSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calcDecreaseDateSelectActionPerformed(evt);
+            }
+        });
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel20.setText("Inventario actual");
+
+        calcDecreaseCurrentInv.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        calcDecreaseCurrentInv.setForeground(new java.awt.Color(255, 181, 52));
+        calcDecreaseCurrentInv.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        calcDecreaseCurrentInv.setText("0%");
+
+        calcDecreaseNewInv.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        calcDecreaseNewInv.setForeground(new java.awt.Color(255, 181, 52));
+        calcDecreaseNewInv.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        calcDecreaseNewInv.setText("0%");
+
+        jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel21.setText("Nuevo inventario");
+
+        javax.swing.GroupLayout calcDecreaseLayout = new javax.swing.GroupLayout(calcDecrease);
+        calcDecrease.setLayout(calcDecreaseLayout);
+        calcDecreaseLayout.setHorizontalGroup(
+            calcDecreaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(calcDecreaseLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(calcDecreaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(calcDecreaseLayout.createSequentialGroup()
+                        .addGroup(calcDecreaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(calcDecreaseUseKg)
+                            .addGroup(calcDecreaseLayout.createSequentialGroup()
+                                .addGroup(calcDecreaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel14)
+                                    .addComponent(calcDecreaseDateSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel13)
+                                    .addComponent(calcDecreaseProductSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel18))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE))
+                    .addGroup(calcDecreaseLayout.createSequentialGroup()
+                        .addGroup(calcDecreaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel20)
+                            .addComponent(calcDecreaseCurrentInv)
+                            .addComponent(jLabel21)
+                            .addComponent(calcDecreaseNewInv))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(calcDecreaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(calcDecreaseCurrentKg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(calcDecreaseAverage, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(calcDecreaseReal, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(calcDecreaseDiff, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(27, 27, 27))
+            .addGroup(calcDecreaseLayout.createSequentialGroup()
+                .addGroup(calcDecreaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(calcDecreaseLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(calcDecreaseTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(calcDecreaseLayout.createSequentialGroup()
+                        .addGap(376, 376, 376)
+                        .addComponent(calcDecreaseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        newCalcLayout.setVerticalGroup(
-            newCalcLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(newCalcLayout.createSequentialGroup()
+        calcDecreaseLayout.setVerticalGroup(
+            calcDecreaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(calcDecreaseLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(newCalcTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(816, Short.MAX_VALUE))
+                .addComponent(calcDecreaseTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addGroup(calcDecreaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(calcDecreaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(calcDecreaseLayout.createSequentialGroup()
+                        .addComponent(calcDecreaseCurrentKg, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(calcDecreaseAverage)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(calcDecreaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(calcDecreaseReal)
+                            .addComponent(jLabel20)))
+                    .addGroup(calcDecreaseLayout.createSequentialGroup()
+                        .addComponent(calcDecreaseProductSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(calcDecreaseDateSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(calcDecreaseUseKg, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(calcDecreaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(calcDecreaseLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(calcDecreaseDiff))
+                    .addGroup(calcDecreaseLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(calcDecreaseCurrentInv)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel21)
+                        .addGap(8, 8, 8)
+                        .addComponent(calcDecreaseNewInv)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                .addComponent(calcDecreaseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(120, 120, 120))
         );
 
-        contentLayout.add(newCalc, "newCalc");
+        contentLayout.add(calcDecrease, "calcDecrease");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -835,10 +996,7 @@ public class Screen extends javax.swing.JFrame {
 
     private void calcButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcButtonActionPerformed
         // TODO add your handling code here:
-        cLayout.show(contentLayout, "tableRegisterView");
-        currentView = calcButton.getName();
-        tableRegisterTitle.setText("Calcular merma");
-        tableRegisterTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconCalc.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
+       
     }//GEN-LAST:event_calcButtonActionPerformed
 
     private void newRegistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newRegistButtonActionPerformed
@@ -882,6 +1040,22 @@ public class Screen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_newInvKgInitialActionPerformed
 
+    private void calcDecreaseUseKgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcDecreaseUseKgActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_calcDecreaseUseKgActionPerformed
+
+    private void calcDecreaseProductSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcDecreaseProductSelectActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_calcDecreaseProductSelectActionPerformed
+
+    private void calcDecreaseCurrentKgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcDecreaseCurrentKgActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_calcDecreaseCurrentKgActionPerformed
+
+    private void calcDecreaseDateSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcDecreaseDateSelectActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_calcDecreaseDateSelectActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -918,7 +1092,19 @@ public class Screen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton calcButton;
+    public javax.swing.JButton calcButton;
+    private javax.swing.JPanel calcDecrease;
+    public javax.swing.JLabel calcDecreaseAverage;
+    public javax.swing.JButton calcDecreaseBtn;
+    public javax.swing.JLabel calcDecreaseCurrentInv;
+    public javax.swing.JTextField calcDecreaseCurrentKg;
+    public javax.swing.JComboBox<String> calcDecreaseDateSelect;
+    public javax.swing.JLabel calcDecreaseDiff;
+    public javax.swing.JLabel calcDecreaseNewInv;
+    public javax.swing.JComboBox<String> calcDecreaseProductSelect;
+    public javax.swing.JLabel calcDecreaseReal;
+    public javax.swing.JLabel calcDecreaseTitle;
+    public javax.swing.JTextField calcDecreaseUseKg;
     private javax.swing.JButton configButton;
     public javax.swing.JPanel contentLayout;
     private javax.swing.JPanel dashboardView;
@@ -932,7 +1118,16 @@ public class Screen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -945,10 +1140,6 @@ public class Screen extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton kitchenReportButton;
-    private javax.swing.JPanel newCalc;
-    public javax.swing.JLabel newCalcTitle;
-    private javax.swing.JPanel newCut;
-    private javax.swing.JLabel newCutTitle;
     public javax.swing.JTextField newInvKgInitial;
     public javax.swing.JButton newInvProductBtn;
     public javax.swing.JComboBox<String> newInvProductSelect;

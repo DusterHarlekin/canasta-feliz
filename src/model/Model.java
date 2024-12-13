@@ -86,6 +86,23 @@ public class Model {
         }
     }
     
+    public ResultSet getInvProductDates(int productId) throws SQLException{
+        String query = "select fecha_entrada from inventario where fk_id_producto="+productId;
+        ResultSet rs = null;
+ 
+        try {
+            con = connect();
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
+            
+         
+        } catch (SQLException e) {
+            System.out.println("ERROR. " + e);
+        } finally {
+            return rs;
+        }
+    }
+    
     public ResultSet getInvProducts() throws SQLException{
         String query = "select inventario.fk_id_producto, productos.nombre, inventario.peso_inicial, inventario.peso_actual, inventario.merma_total, inventario.fecha_entrada"
                 + " from inventario inner join productos on inventario.fk_id_producto=productos.id_producto";
