@@ -19,8 +19,7 @@ public class Screen extends javax.swing.JFrame {
      * Creates new form Screen
      */
     public CardLayout cLayout;
-    String currentView;
-    ImageIcon currentImageIcon;
+    public String currentView;
     public Screen() {
         initComponents();
         cLayout = (CardLayout) (contentLayout.getLayout());
@@ -89,6 +88,11 @@ public class Screen extends javax.swing.JFrame {
         newCutTitle = new javax.swing.JLabel();
         newInventory = new javax.swing.JPanel();
         newInventoryTitle = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        newInvKgInitial = new javax.swing.JTextField();
+        newInvProductSelect = new javax.swing.JComboBox<>();
+        newInvProductBtn = new javax.swing.JButton();
         newCalc = new javax.swing.JPanel();
         newCalcTitle = new javax.swing.JLabel();
 
@@ -655,9 +659,29 @@ public class Screen extends javax.swing.JFrame {
 
         newInventoryTitle.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         newInventoryTitle.setForeground(new java.awt.Color(51, 51, 51));
-        newInventoryTitle.setText("Nuevo producto");
+        newInventoryTitle.setText("Añadir a inventario");
         newInventoryTitle.setMaximumSize(new java.awt.Dimension(550, 512));
         newInventoryTitle.setName("newProductTitle"); // NOI18N
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel11.setText("Producto");
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel12.setText("Cantidad Inicial (Kg)");
+
+        newInvKgInitial.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        newInvKgInitial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newInvKgInitialActionPerformed(evt);
+            }
+        });
+
+        newInvProductSelect.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        newInvProductBtn.setBackground(new java.awt.Color(255, 181, 52));
+        newInvProductBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        newInvProductBtn.setForeground(new java.awt.Color(245, 245, 245));
+        newInvProductBtn.setText("GUARDAR");
 
         javax.swing.GroupLayout newInventoryLayout = new javax.swing.GroupLayout(newInventory);
         newInventory.setLayout(newInventoryLayout);
@@ -665,15 +689,34 @@ public class Screen extends javax.swing.JFrame {
             newInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(newInventoryLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(newInventoryTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(659, Short.MAX_VALUE))
+                .addGroup(newInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(newInventoryTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
+                    .addComponent(newInvKgInitial)
+                    .addComponent(jLabel12)
+                    .addComponent(newInvProductSelect, 0, 474, Short.MAX_VALUE))
+                .addContainerGap(461, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newInventoryLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(newInvProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(409, 409, 409))
         );
         newInventoryLayout.setVerticalGroup(
             newInventoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(newInventoryLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(newInventoryTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(816, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(newInvProductSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(newInvKgInitial, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74)
+                .addComponent(newInvProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(480, Short.MAX_VALUE))
         );
 
         contentLayout.add(newInventory, "newInventory");
@@ -800,37 +843,7 @@ public class Screen extends javax.swing.JFrame {
 
     private void newRegistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newRegistButtonActionPerformed
         // TODO add your handling code here:
-        Model m = new Model();
-        cLayout.show(contentLayout, "new"+currentView);
-        switch (currentView){
-            case "Product":
-                newProductTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconProduct.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
-            case "Provider":
-                newProviderTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconProvider.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
-        {
-            try {
-                ResultSet rs = m.getProviders();
-                
-                DefaultComboBoxModel boxModel = new DefaultComboBoxModel();
-                while (rs.next()) {
-                        //newProductProviderSelect.a (new ComboItem(rs.getString("rif")+ " " + rs.getString("nombre"), rs.getInt("id_proveedor")));
-                        //USEN ESTE MÉTODO
-                        
-                        boxModel.addElement(new ComboItem(rs.getString("rif")+ " " + rs.getString("nombre"), rs.getString("id_proveedor")));
-    
-                   }
-                newProductProviderSelect.setModel(boxModel);
- 
-            } catch (SQLException ex) {
-                Logger.getLogger(Screen.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-            case "Inventory":
-                newInventoryTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconInventory.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
-            case "Calc":
-                newCalcTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconCalc.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
         
-        }
     }//GEN-LAST:event_newRegistButtonActionPerformed
 
     private void newProviderDocTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newProviderDocTextActionPerformed
@@ -864,6 +877,10 @@ public class Screen extends javax.swing.JFrame {
     private void newProductDecrAvTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newProductDecrAvTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_newProductDecrAvTextActionPerformed
+
+    private void newInvKgInitialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newInvKgInitialActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newInvKgInitialActionPerformed
 
     /**
      * @param args the command line arguments
@@ -908,11 +925,13 @@ public class Screen extends javax.swing.JFrame {
     private javax.swing.JButton exitButton;
     private javax.swing.JButton helpButton;
     private javax.swing.JButton homeButton;
-    private javax.swing.JButton inventoryButton;
+    public javax.swing.JButton inventoryButton;
     private javax.swing.JButton inventoryReportButton;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -927,18 +946,21 @@ public class Screen extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton kitchenReportButton;
     private javax.swing.JPanel newCalc;
-    private javax.swing.JLabel newCalcTitle;
+    public javax.swing.JLabel newCalcTitle;
     private javax.swing.JPanel newCut;
     private javax.swing.JLabel newCutTitle;
+    public javax.swing.JTextField newInvKgInitial;
+    public javax.swing.JButton newInvProductBtn;
+    public javax.swing.JComboBox<String> newInvProductSelect;
     private javax.swing.JPanel newInventory;
-    private javax.swing.JLabel newInventoryTitle;
+    public javax.swing.JLabel newInventoryTitle;
     private javax.swing.JPanel newProduct;
     public javax.swing.JButton newProductBtn;
     public javax.swing.JTextField newProductDecrAvText;
     public javax.swing.JTextField newProductNameText;
     public javax.swing.JTextField newProductPriceText;
     public javax.swing.JComboBox<String> newProductProviderSelect;
-    private javax.swing.JLabel newProductTitle;
+    public javax.swing.JLabel newProductTitle;
     private javax.swing.JPanel newProvider;
     public javax.swing.JTextArea newProviderAddressText;
     public javax.swing.JButton newProviderBtn;
@@ -947,8 +969,8 @@ public class Screen extends javax.swing.JFrame {
     public javax.swing.JTextField newProviderNameText;
     public javax.swing.JTextField newProviderPhoneText;
     public javax.swing.JTextField newProviderSurnameText;
-    private javax.swing.JLabel newProviderTitle;
-    private javax.swing.JButton newRegistButton;
+    public javax.swing.JLabel newProviderTitle;
+    public javax.swing.JButton newRegistButton;
     private javax.swing.JButton productLoseReportButton;
     public javax.swing.JButton productsButton;
     public javax.swing.JButton providersButton;

@@ -13,7 +13,7 @@ public class Validation {
             return true;
         }
         else if(!NAME_PATTERN.matcher(text).matches()){
-            showMessageDialog(null, "Debe ingresar su nombre, apellido o nombre de la empresa");
+            showMessageDialog(null, "El campo no debe estar vacío");
         }
         return NAME_PATTERN.matcher(text).matches();
     }
