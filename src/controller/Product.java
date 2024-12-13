@@ -4,25 +4,29 @@ package controller;
  //PRODUCTOS
 public class Product {
   
-    private int fk_id_proveedor;
+    private int idProveedor;
     private String nombre;
     private double precio;
+    private double mermaPromedio;
     
     //CONSTRUCTOR
-    public Product(int fk_id_proveedor, String nombre, double precio) {
-        this.fk_id_proveedor = fk_id_proveedor;
+
+    public Product(int idProveedor, String nombre, double precio, double mermaPromedio) {
+        this.idProveedor = idProveedor;
         this.nombre = nombre;
         this.precio = precio;
+        this.mermaPromedio = mermaPromedio;
     }
+    
    
     //GETTERS Y SETTERS
 
-    public int getFk_id_proveedor() {
-        return fk_id_proveedor;
+    public int getIdProveedor() {
+        return idProveedor;
     }
 
-    public void setFk_id_proveedor(int fk_id_proveedor) {
-        this.fk_id_proveedor = fk_id_proveedor;
+    public void setIdProveedor(int idProveedor) {
+        this.idProveedor = idProveedor;
     }
 
     public String getNombre() {
@@ -40,4 +44,15 @@ public class Product {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
+
+    public double getMermaPromedio() {
+        return mermaPromedio;
+    }
+
+    public void setMermaPromedio(double mermaPromedio) {
+        this.mermaPromedio = mermaPromedio;
+    }
+
+    
+    
 }

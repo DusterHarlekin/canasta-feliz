@@ -1,6 +1,8 @@
 package model;
 
 import com.mysql.jdbc.Connection;
+import controller.Product;
+import controller.Provider;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,7 +31,6 @@ public class Model {
             
             Class.forName(driver);
             con = (Connection) DriverManager.getConnection (url, user, password);
-            System.out.println("LA CONEXIÓN FUE UN ÉXITO");
             
         } catch (ClassNotFoundException | SQLException ex) {
             
@@ -67,7 +68,7 @@ public class Model {
     }
     
     public ResultSet getProducts() throws SQLException{
-        String query = "select productos.nombre, productos.precio, proveedores.nombre, proveedores.apellido"
+        String query = "select productos.nombre, productos.precio, productos.merma_promedio, proveedores.nombre, proveedores.apellido"
                 + " from productos inner join proveedores on productos.fk_id_proveedor=proveedores.id_proveedor";
         ResultSet rs = null;
  
@@ -84,22 +85,43 @@ public class Model {
         }
     }
     
-    public ResultSet getCuts() throws SQLException{
-        String query = "select cortes.nombre, cortes.merma_promedio, productos.nombre"
-                + " from cortes inner join productos on cortes.fk_id_producto=productos.id_producto";
-        ResultSet rs = null;
- 
+    public void postProvider(Provider p) throws SQLException, Exception {
+        String query = "insert into proveedores (rif, nombre, apellido, telefono, correo, direccion) values (?,?,?,?,?,?)";
         try {
             con = connect();
-            ps = con.prepareStatement(query);
-            rs = ps.executeQuery();
             
-         
+            ps = con.prepareStatement(query);
+            ps.setString(1, p.getRif());
+            ps.setString(2, p.getNombre());
+            ps.setString(3, p.getApellido());
+            ps.setString(4, p.getTelefono());
+            ps.setString(6, p.getDireccion());
+            ps.setString(5, p.getCorreo());
+
+            ps.executeUpdate();
+           
         } catch (SQLException e) {
-            System.out.println("ERROR. " + e);
-        } finally {
-            return rs;
+            System.out.println("ERROR. " + e.getMessage());
         }
     }
+   
+       public void postProduct(Product p) throws SQLException, Exception {
+        String query = "insert into productos (nombre, precio, merma_promedio, fk_id_proveedor) values (?,?,?,?)";
+        try {
+            con = connect();
+            
+            ps = con.prepareStatement(query);
+            ps.setString(1, p.getNombre());
+            ps.setDouble(2, p.getPrecio());
+            ps.setDouble(3, p.getMermaPromedio());
+            ps.setDouble(4, p.getIdProveedor());
+
+            ps.executeUpdate();
+           
+        } catch (SQLException e) {
+            System.out.println("ERROR. " + e.getMessage());
+        }
+    }
+    
     
 }

@@ -1,12 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package view;
 import java.awt.CardLayout;
 import java.awt.Image;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import model.Model;
 /**
  *
  * @author rogerguedez
@@ -16,7 +18,7 @@ public class Screen extends javax.swing.JFrame {
     /**
      * Creates new form Screen
      */
-    CardLayout cLayout;
+    public CardLayout cLayout;
     String currentView;
     ImageIcon currentImageIcon;
     public Screen() {
@@ -37,7 +39,6 @@ public class Screen extends javax.swing.JFrame {
         sideBar = new javax.swing.JPanel();
         productsButton = new javax.swing.JButton();
         inventoryButton = new javax.swing.JButton();
-        cutsButton = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         exitButton = new javax.swing.JButton();
         calcButton = new javax.swing.JButton();
@@ -59,8 +60,31 @@ public class Screen extends javax.swing.JFrame {
         registerTable = new javax.swing.JTable();
         newProvider = new javax.swing.JPanel();
         newProviderTitle = new javax.swing.JLabel();
+        newProviderDocText = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        newProviderNameText = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        newProviderSurnameText = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        newProviderPhoneText = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        newProviderMailText = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        newProviderAddressText = new javax.swing.JTextArea();
+        jLabel6 = new javax.swing.JLabel();
+        newProviderBtn = new javax.swing.JButton();
         newProduct = new javax.swing.JPanel();
         newProductTitle = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        newProductNameText = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        newProductPriceText = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        newProductDecrAvText = new javax.swing.JTextField();
+        newProductBtn = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        newProductProviderSelect = new javax.swing.JComboBox<>();
         newCut = new javax.swing.JPanel();
         newCutTitle = new javax.swing.JLabel();
         newInventory = new javax.swing.JPanel();
@@ -99,19 +123,6 @@ public class Screen extends javax.swing.JFrame {
         inventoryButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inventoryButtonActionPerformed(evt);
-            }
-        });
-
-        cutsButton.setBackground(new java.awt.Color(101, 183, 65));
-        cutsButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        cutsButton.setForeground(new java.awt.Color(245, 245, 245));
-        cutsButton.setText("CORTES");
-        cutsButton.setBorderPainted(false);
-        cutsButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        cutsButton.setName("Cut"); // NOI18N
-        cutsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cutsButtonActionPerformed(evt);
             }
         });
 
@@ -246,7 +257,6 @@ public class Screen extends javax.swing.JFrame {
                 .addGroup(sideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(productsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(inventoryButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
-                    .addComponent(cutsButton, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                     .addComponent(calcButton, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
@@ -264,14 +274,12 @@ public class Screen extends javax.swing.JFrame {
         sideBarLayout.setVerticalGroup(
             sideBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sideBarLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(47, 47, 47)
                 .addComponent(homeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addComponent(providersButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(productsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(cutsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(providersButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -382,9 +390,72 @@ public class Screen extends javax.swing.JFrame {
 
         newProviderTitle.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         newProviderTitle.setForeground(new java.awt.Color(51, 51, 51));
-        newProviderTitle.setText("Nuevo producto");
+        newProviderTitle.setText("Nuevo proveedor");
         newProviderTitle.setMaximumSize(new java.awt.Dimension(550, 512));
         newProviderTitle.setName("newProductTitle"); // NOI18N
+
+        newProviderDocText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        newProviderDocText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newProviderDocTextActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setText("Rif/Cédula");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("Nombre");
+
+        newProviderNameText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        newProviderNameText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newProviderNameTextActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setText("Apellido");
+
+        newProviderSurnameText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        newProviderSurnameText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newProviderSurnameTextActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setText("Teléfono");
+
+        newProviderPhoneText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        newProviderPhoneText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newProviderPhoneTextActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setText("Correo");
+
+        newProviderMailText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        newProviderMailText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newProviderMailTextActionPerformed(evt);
+            }
+        });
+
+        newProviderAddressText.setColumns(20);
+        newProviderAddressText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        newProviderAddressText.setRows(5);
+        jScrollPane2.setViewportView(newProviderAddressText);
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setText("Dirección");
+
+        newProviderBtn.setBackground(new java.awt.Color(255, 181, 52));
+        newProviderBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        newProviderBtn.setForeground(new java.awt.Color(245, 245, 245));
+        newProviderBtn.setText("GUARDAR");
 
         javax.swing.GroupLayout newProviderLayout = new javax.swing.GroupLayout(newProvider);
         newProvider.setLayout(newProviderLayout);
@@ -392,15 +463,58 @@ public class Screen extends javax.swing.JFrame {
             newProviderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(newProviderLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(newProviderTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(659, Short.MAX_VALUE))
+                .addGroup(newProviderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(newProviderTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newProviderDocText)
+                    .addComponent(jLabel1)
+                    .addComponent(newProviderNameText, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addComponent(newProviderSurnameText, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
+                    .addComponent(jLabel3)
+                    .addComponent(newProviderPhoneText, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
+                    .addComponent(jLabel4)
+                    .addComponent(newProviderMailText, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6)
+                    .addComponent(jScrollPane2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newProviderLayout.createSequentialGroup()
+                .addContainerGap(456, Short.MAX_VALUE)
+                .addComponent(newProviderBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(377, 377, 377))
         );
         newProviderLayout.setVerticalGroup(
             newProviderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(newProviderLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(newProviderTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(816, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(newProviderDocText, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(newProviderNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(newProviderSurnameText, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(newProviderPhoneText, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(newProviderMailText, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(newProviderBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
         contentLayout.add(newProvider, "newProvider");
@@ -415,21 +529,93 @@ public class Screen extends javax.swing.JFrame {
         newProductTitle.setMaximumSize(new java.awt.Dimension(550, 512));
         newProductTitle.setName("newProductTitle"); // NOI18N
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setText("Nombre");
+
+        newProductNameText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        newProductNameText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newProductNameTextActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel8.setText("Precio");
+
+        newProductPriceText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        newProductPriceText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newProductPriceTextActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setText("Merma Promedio");
+
+        newProductDecrAvText.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        newProductDecrAvText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newProductDecrAvTextActionPerformed(evt);
+            }
+        });
+
+        newProductBtn.setBackground(new java.awt.Color(255, 181, 52));
+        newProductBtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        newProductBtn.setForeground(new java.awt.Color(245, 245, 245));
+        newProductBtn.setText("GUARDAR");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel10.setText("Proveedor");
+
+        newProductProviderSelect.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout newProductLayout = new javax.swing.GroupLayout(newProduct);
         newProduct.setLayout(newProductLayout);
         newProductLayout.setHorizontalGroup(
             newProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newProductLayout.createSequentialGroup()
+                .addContainerGap(452, Short.MAX_VALUE)
+                .addComponent(newProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(381, 381, 381))
             .addGroup(newProductLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(newProductTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(659, Short.MAX_VALUE))
+                .addGroup(newProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(newProductProviderSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newProductTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(newProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(newProductNameText, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
+                        .addComponent(jLabel7)
+                        .addComponent(newProductPriceText)
+                        .addComponent(jLabel8)
+                        .addComponent(newProductDecrAvText)
+                        .addComponent(jLabel9))
+                    .addComponent(jLabel10))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         newProductLayout.setVerticalGroup(
             newProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(newProductLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(newProductTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(816, Short.MAX_VALUE))
+                .addGap(62, 62, 62)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(newProductNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(newProductPriceText, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(newProductDecrAvText, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel10)
+                .addGap(18, 18, 18)
+                .addComponent(newProductProviderSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addComponent(newProductBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(267, Short.MAX_VALUE))
         );
 
         contentLayout.add(newProduct, "newProduct");
@@ -596,14 +782,6 @@ public class Screen extends javax.swing.JFrame {
         tableRegisterTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconProduct.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_productsButtonActionPerformed
 
-    private void cutsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutsButtonActionPerformed
-        // TODO add your handling code here:
-        cLayout.show(contentLayout, "tableRegisterView");
-        currentView = cutsButton.getName();
-        tableRegisterTitle.setText("Cortes");
-        tableRegisterTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconCut.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
-    }//GEN-LAST:event_cutsButtonActionPerformed
-
     private void inventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryButtonActionPerformed
         // TODO add your handling code here:
         cLayout.show(contentLayout, "tableRegisterView");
@@ -622,15 +800,31 @@ public class Screen extends javax.swing.JFrame {
 
     private void newRegistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newRegistButtonActionPerformed
         // TODO add your handling code here:
-        System.out.println(currentView);
+        Model m = new Model();
         cLayout.show(contentLayout, "new"+currentView);
         switch (currentView){
             case "Product":
                 newProductTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconProduct.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
             case "Provider":
                 newProviderTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconProvider.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
-            case "Cut":
-                newCutTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconCut.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
+        {
+            try {
+                ResultSet rs = m.getProviders();
+                
+                DefaultComboBoxModel boxModel = new DefaultComboBoxModel();
+                while (rs.next()) {
+                        //newProductProviderSelect.a (new ComboItem(rs.getString("rif")+ " " + rs.getString("nombre"), rs.getInt("id_proveedor")));
+                        //USEN ESTE MÉTODO
+                        
+                        boxModel.addElement(new ComboItem(rs.getString("rif")+ " " + rs.getString("nombre"), rs.getString("id_proveedor")));
+    
+                   }
+                newProductProviderSelect.setModel(boxModel);
+ 
+            } catch (SQLException ex) {
+                Logger.getLogger(Screen.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
             case "Inventory":
                 newInventoryTitle.setIcon(new ImageIcon(new ImageIcon("./src/imgs/iconInventory.png").getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT)));
             case "Calc":
@@ -638,6 +832,38 @@ public class Screen extends javax.swing.JFrame {
         
         }
     }//GEN-LAST:event_newRegistButtonActionPerformed
+
+    private void newProviderDocTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newProviderDocTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newProviderDocTextActionPerformed
+
+    private void newProviderNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newProviderNameTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newProviderNameTextActionPerformed
+
+    private void newProviderSurnameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newProviderSurnameTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newProviderSurnameTextActionPerformed
+
+    private void newProviderPhoneTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newProviderPhoneTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newProviderPhoneTextActionPerformed
+
+    private void newProviderMailTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newProviderMailTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newProviderMailTextActionPerformed
+
+    private void newProductNameTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newProductNameTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newProductNameTextActionPerformed
+
+    private void newProductPriceTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newProductPriceTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newProductPriceTextActionPerformed
+
+    private void newProductDecrAvTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newProductDecrAvTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newProductDecrAvTextActionPerformed
 
     /**
      * @param args the command line arguments
@@ -677,8 +903,7 @@ public class Screen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton calcButton;
     private javax.swing.JButton configButton;
-    private javax.swing.JPanel contentLayout;
-    public javax.swing.JButton cutsButton;
+    public javax.swing.JPanel contentLayout;
     private javax.swing.JPanel dashboardView;
     private javax.swing.JButton exitButton;
     private javax.swing.JButton helpButton;
@@ -686,7 +911,18 @@ public class Screen extends javax.swing.JFrame {
     private javax.swing.JButton inventoryButton;
     private javax.swing.JButton inventoryReportButton;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton kitchenReportButton;
@@ -697,8 +933,20 @@ public class Screen extends javax.swing.JFrame {
     private javax.swing.JPanel newInventory;
     private javax.swing.JLabel newInventoryTitle;
     private javax.swing.JPanel newProduct;
+    public javax.swing.JButton newProductBtn;
+    public javax.swing.JTextField newProductDecrAvText;
+    public javax.swing.JTextField newProductNameText;
+    public javax.swing.JTextField newProductPriceText;
+    public javax.swing.JComboBox<String> newProductProviderSelect;
     private javax.swing.JLabel newProductTitle;
     private javax.swing.JPanel newProvider;
+    public javax.swing.JTextArea newProviderAddressText;
+    public javax.swing.JButton newProviderBtn;
+    public javax.swing.JTextField newProviderDocText;
+    public javax.swing.JTextField newProviderMailText;
+    public javax.swing.JTextField newProviderNameText;
+    public javax.swing.JTextField newProviderPhoneText;
+    public javax.swing.JTextField newProviderSurnameText;
     private javax.swing.JLabel newProviderTitle;
     private javax.swing.JButton newRegistButton;
     private javax.swing.JButton productLoseReportButton;
