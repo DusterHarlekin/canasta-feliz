@@ -8,14 +8,12 @@ public class Inventory {
     private int idProducto;
     private double pesoInicial;
     private double pesoActual;
-    private double mermaTotal;
     private String fechaEntrada;
 
-    public Inventory(int idProducto, double pesoInicial, double pesoActual, double mermaTotal) {
+    public Inventory(int idProducto, double pesoInicial, double pesoActual) {
         this.idProducto = idProducto;
         this.pesoInicial = pesoInicial;
         this.pesoActual = pesoActual;
-        this.mermaTotal = mermaTotal;
         this.fechaEntrada = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
@@ -41,14 +39,6 @@ public class Inventory {
 
     public void setPesoActual(double pesoActual) {
         this.pesoActual = pesoActual;
-    }
-
-    public double getMermaTotal() {
-        return mermaTotal;
-    }
-
-    public void setMermaTotal(double mermaTotal) {
-        this.mermaTotal = mermaTotal;
     }
 
     public String getFechaEntrada() {

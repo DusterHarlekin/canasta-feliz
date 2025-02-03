@@ -11,40 +11,74 @@ import javax.swing.table.DefaultTableModel;
 import model.Model;
 import view.Screen;
 import controller.Validation;
+import java.awt.Component;
 import java.awt.Image;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.sql.SQLIntegrityConstraintViolationException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import view.ComboItem;
+import view.Login;
 
 public class Controller {
 
-    private Screen vista;
-    private Model modelo;
+    private final Login login;
+    private final Screen vista;
+    private final Model modelo;
+    private int currentInvProductId;
+    private double currentInvProductWeight;
+    private double newInvProductWeight;
+    private double productDecreaseAverage;
+    private double realDecreasePerc;
+    private double realWeight;
+    private double weightDiff;
+    private User currentUser;
     
-    public Controller(Screen vista, Model modelo) {
+    public Controller(Screen vista, Model modelo, Login login) {
         this.vista = vista;
         this.modelo = modelo;
+        this.login = login;
         
+        //PAGE DE MERMA (SELECT DEL PRODUCTO)
         this.vista.calcDecreaseProductSelect.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                // SELECT DEL PRODUCTO
                 Object boxItem = vista.calcDecreaseProductSelect.getSelectedItem();
+                Object firstItem = vista.calcDecreaseProductSelect.getItemAt(0);
                 if (((ComboItem) boxItem).getValue() != null) {
+                    
                     int idProducto = Integer.parseInt(((ComboItem) boxItem).getValue());
                     vista.calcDecreaseDateSelect.setEnabled(true);
                     try {
                         ResultSet rs = modelo.getInvProductDates(idProducto);
-
+                        ResultSet rsProduct = modelo.getProduct(idProducto);
+                        
+                        //Producto
+                         if (rsProduct.next()) {
+                            //newProductProviderSelect.a (new ComboItem(rs.getString("rif")+ " " + rs.getString("nombre"), rs.getInt("id_proveedor")));
+                            //USEN ESTE MÉTODO
+                            productDecreaseAverage = rsProduct.getDouble("merma_promedio");
+                            vista.calcDecreaseAverage.setText(productDecreaseAverage+"%");
+                        }
+                        
+                        //Fechas
                         DefaultComboBoxModel boxModel = new DefaultComboBoxModel();
                         boxModel.addElement(new ComboItem("Seleccione una fecha", null));
                         while (rs.next()) {
                             //newProductProviderSelect.a (new ComboItem(rs.getString("rif")+ " " + rs.getString("nombre"), rs.getInt("id_proveedor")));
                             //USEN ESTE MÉTODO
-                            boxModel.addElement(new ComboItem(rs.getString("fecha_entrada"), rs.getString("fecha_entrada")));
+                            boxModel.addElement(new ComboItem(rs.getString("fecha_entrada"), rs.getString("id_inventario")));
 
                         }
+                      
                         vista.calcDecreaseDateSelect.setModel(boxModel);
+                        if (((ComboItem) firstItem).getValue() == null) {
+                            vista.calcDecreaseProductSelect.removeItemAt(0);
+                        }
+                       
+                        
 
                     } catch (SQLException ex) {
                         Logger.getLogger(Screen.class.getName()).log(Level.SEVERE, null, ex);
@@ -54,11 +88,126 @@ public class Controller {
                     boxModel.addElement(new ComboItem("", null));
                     vista.calcDecreaseDateSelect.setModel(boxModel);
                     vista.calcDecreaseDateSelect.setEnabled(false);
+                    
                 }
 
             }
         });
         
+        //PAGE DE MERMA (SELECT DE LA FECHA)
+        this.vista.calcDecreaseDateSelect.addActionListener(new ActionListener() {
+            
+            public void actionPerformed(ActionEvent e) {
+         
+                Object boxItem = vista.calcDecreaseDateSelect.getSelectedItem();
+                if (((ComboItem) boxItem).getValue() != null) {
+                    int idInventario = Integer.parseInt(((ComboItem) boxItem).getValue());
+              
+                    try {
+                        ResultSet rs = modelo.getInvProduct(idInventario);
+                        
+                        if (rs.next()) {
+                            vista.calcDecreaseUseKg.setEnabled(true);
+                            vista.calcDecreaseCurrentInv.setText(rs.getDouble("peso_actual") + " Kg.");
+                            currentInvProductId = rs.getInt("id_inventario");
+                            currentInvProductWeight = rs.getDouble("peso_actual");
+                        }
+                       
+
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Screen.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else{
+                    vista.calcDecreaseUseKg.setText("");
+                    vista.calcDecreaseUseKg.setEnabled(false);
+                }
+
+            }
+        });
+        
+        //PAGE DE MERMA (INPUT CANTIDAD REAL)
+        // Listen for changes in the text
+        this.vista.calcDecreaseCurrentKg.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent de) {
+                update();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent de) {
+                update();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent de) {
+                update();
+            }
+
+            public void update() {
+
+                String decreaseCurrentKg = ("".equals(vista.calcDecreaseCurrentKg.getText().trim()) ? "0" : vista.calcDecreaseCurrentKg.getText());
+                Double decreaseUseKg = "".equals(vista.calcDecreaseCurrentKg.getText().trim()) ? 0 : Double.parseDouble(vista.calcDecreaseUseKg.getText());
+                if (!Validation.validarDouble(decreaseCurrentKg) || "0".equals(decreaseCurrentKg)) {
+                
+                    vista.calcDecreaseDiff.setText("0 Kg.");
+                    vista.calcDecreaseAverageWeight.setText("0 Kg.");
+                   
+                } else {
+                  
+                    realWeight = Double.parseDouble(decreaseCurrentKg);
+                    
+                    //CALCULO DE MERMA
+                    Double averageWeight = decreaseUseKg - decreaseUseKg * (productDecreaseAverage/100);
+                    //Double averageDecreaseWeight = decreaseUseKg * (productDecreaseAverage/100);
+                    System.out.print(averageWeight);
+                    weightDiff = realWeight - averageWeight;
+                    realDecreasePerc = 100 - (realWeight / decreaseUseKg) * 100;
+                    
+                    //MOSTRAMOS EN PANTALLA
+                    vista.calcDecreaseDiff.setText(weightDiff + " Kg.");
+                    vista.calcDecreaseAverageWeight.setText(averageWeight + " Kg.");
+                    vista.calcDecreaseReal.setText(realDecreasePerc + "%");
+                }
+            }
+
+        });
+        
+        //PAGE DE MERMA (INPUT CANTIDAD)
+        // Listen for changes in the text
+        this.vista.calcDecreaseUseKg.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent de) {
+                update();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent de) {
+                update();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent de) {
+                update();
+            }
+
+            public void update() {
+
+                String decreaseUseKg = ("".equals(vista.calcDecreaseUseKg.getText().trim()) ? "0" : vista.calcDecreaseUseKg.getText());
+                if (!Validation.validarDouble(decreaseUseKg) || Double.parseDouble(decreaseUseKg) > currentInvProductWeight || Double.parseDouble(decreaseUseKg) == 0) {
+                    
+                    vista.calcDecreaseNewInv.setText("0 Kg.");
+                    vista.calcDecreaseCurrentKg.setText("");
+                    vista.calcDecreaseCurrentKg.setEnabled(false);
+                } else {
+                    newInvProductWeight = currentInvProductWeight - Double.parseDouble(decreaseUseKg);
+                    vista.calcDecreaseNewInv.setText(newInvProductWeight + " Kg.");
+                     vista.calcDecreaseCurrentKg.setEnabled(true);
+                }
+            }
+
+        });
+         
+       
         
 
         
@@ -207,7 +356,6 @@ public class Controller {
                 dtm.addColumn("Producto");
                 dtm.addColumn("Peso Inicial");
                 dtm.addColumn("Peso Actual");
-                dtm.addColumn("Merma Total");
                 dtm.addColumn("Fecha de entrada");
 
                 try {
@@ -218,8 +366,7 @@ public class Controller {
                         dtm.addRow(new Object[]{rsInventory.getString(2),
                             rsInventory.getDouble(3),
                             rsInventory.getDouble(4),
-                            rsInventory.getDouble(5),
-                            rsInventory.getString(6)
+                            rsInventory.getString(5)
                         });
                     }
 
@@ -261,7 +408,7 @@ public class Controller {
                         vista.newProviderAddressText.setText("");
                         
                     } catch (Exception ex) {
-                        Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.print("ERROR. " + ex.getMessage());
                     } 
                 }
             }
@@ -316,7 +463,7 @@ public class Controller {
                     try {
                         Double pesoInicialParsed = Double.parseDouble(pesoInicial);
                         
-                        modelo.postInvProduct(new Inventory(idProducto, pesoInicialParsed, pesoInicialParsed, 0));
+                        modelo.postInvProduct(new Inventory(idProducto, pesoInicialParsed, pesoInicialParsed));
                         vista.inventoryButton.doClick();
                         
                         vista.newInvKgInitial.setText("");
@@ -327,6 +474,51 @@ public class Controller {
                 }
             }
         });
+        
+        this.vista.calcDecreaseBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    modelo.updateInvProduct(newInvProductWeight, currentInvProductId);
+                    
+                    vista.homeButton.doClick();
+                    Screen.clearForm(vista.calcDecrease);
+
+                } catch (Exception ex) {
+                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+        });
+        
+        //LOGIN
+        
+        this.login.loginBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!"".equals(login.userText.getText().trim()) && !"".equals(login.passwordText.getText())){
+                    try {
+                        ResultSet rs = modelo.login(login.userText.getText().trim(), login.passwordText.getText());
+
+                        if(rs.next()){
+                            currentUser = new User("", "", rs.getString("nombre"), rs.getString("apellido"), rs.getString("cedula"), rs.getInt("rol"));
+                            vista.helloText.setText("¡Hola " + currentUser.getNombre() + " " + currentUser.getApellido() + "!");
+                            vista.roleText.setText(currentUser.getRolText());
+                            login.dispose();
+                            iniciarVista();
+                        }
+
+
+
+                    } catch (Exception ex) {
+                        System.out.print(ex.getMessage());
+                    }
+                }
+                
+
+            }
+        });
+        
     }
     
 
@@ -336,7 +528,43 @@ public class Controller {
 
         vista.setLocationRelativeTo(null);
 
-        showMessageDialog(null, "This is even shorter");
+        vista.homeButton.putClientProperty("btnLevel", 3);
+        vista.providersButton.putClientProperty("btnLevel", 2);
+        vista.productsButton.putClientProperty("btnLevel", 2);
+        vista.inventoryButton.putClientProperty("btnLevel", 2);
+        vista.calcButton.putClientProperty("btnLevel", 3);
+        vista.kitchenReportButton.putClientProperty("btnLevel", 2);
+        vista.supervisorReportButton.putClientProperty("btnLevel", 2);
+        vista.inventoryReportButton.putClientProperty("btnLevel", 2);
+        vista.productLoseReportButton.putClientProperty("btnLevel", 2);
+        
+        vista.configButton.putClientProperty("btnLevel", 1);
+        vista.helpButton.putClientProperty("btnLevel", 3);
+        vista.exitButton.putClientProperty("btnLevel", 3);
+        
+         for(Component control : vista.sideBar.getComponents())
+        {
+            if(control instanceof JButton)
+            {
+                if ((int)((JButton)control).getClientProperty("btnLevel") < (int)currentUser.getRol()){
+                    control.setVisible(false);
+                }
+            }
+           
+          
+        }
+        //showMessageDialog(null, "This is even shorter");
+    }
+    
+    public void iniciarVistaLogin() {
+
+        login.setVisible(true);
+
+        login.setLocationRelativeTo(null);
+
+         login.userLogoLabel.setIcon(new ImageIcon(new ImageIcon("./src/imgs/user.png").getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT)));
+         login.logoLabel.setIcon(new ImageIcon(new ImageIcon("./src/imgs/logo.png").getImage().getScaledInstance(500, 500, Image.SCALE_DEFAULT)));
+        //showMessageDialog(null, "This is even shorter");
     }
     
     
