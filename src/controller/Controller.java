@@ -294,7 +294,6 @@ public class Controller {
 
                 dtm.addColumn("Rif");
                 dtm.addColumn("Nombre");
-                dtm.addColumn("Apellido");
                 dtm.addColumn("Teléfono");
                 dtm.addColumn("Correo");
 
@@ -305,7 +304,6 @@ public class Controller {
 
                         dtm.addRow(new Object[]{rsProviders.getString("rif"),
                             rsProviders.getString("nombre"),
-                            rsProviders.getString("apellido"),
                             rsProviders.getString("telefono"),
                             rsProviders.getString("correo")
                         });
@@ -336,7 +334,7 @@ public class Controller {
                         dtm.addRow(new Object[]{rsProducts.getString(2),
                             rsProducts.getDouble(3),
                             rsProducts.getDouble(4),
-                            rsProducts.getString(5) + " " + rsProducts.getString(6)
+                            rsProducts.getString(5)
                         });
                     }
 
@@ -384,25 +382,22 @@ public class Controller {
                 
                 String rif = vista.newProviderDocText.getText();
                 String nombre = vista.newProviderNameText.getText();
-                String apellido = vista.newProviderSurnameText.getText();
                 String telefono = vista.newProviderPhoneText.getText();
                 String correo = vista.newProviderMailText.getText();
                 String direccion = vista.newProviderAddressText.getText();
                         
                 if (Validation.validarDocumento(rif)
-                        && Validation.validarNombres(nombre, false)
-                        && Validation.validarNombres(apellido, true)
+                        && Validation.validarNombres(nombre)
                         && Validation.validarTelf(telefono)
                         && Validation.validarCorreo(correo)
                         && Validation.validarDireccion(direccion)) {
 
                     try {
-                        modelo.postProvider(new Provider(rif, nombre, apellido, telefono, correo, direccion));
+                        modelo.postProvider(new Provider(rif, nombre, telefono, correo, direccion));
                         vista.providersButton.doClick();
                         
                         vista.newProviderDocText.setText("");
                         vista.newProviderNameText.setText("");
-                        vista.newProviderSurnameText.setText("");
                         vista.newProviderPhoneText.setText("");
                         vista.newProviderMailText.setText("");
                         vista.newProviderAddressText.setText("");
@@ -426,7 +421,7 @@ public class Controller {
                 
                 int id_proveedor =Integer.parseInt(((ComboItem)boxItem).getValue());
                         
-                if (Validation.validarNombres(nombre, false)
+                if (Validation.validarNombres(nombre)
                         && Validation.validarDouble(precio)
                         && Validation.validarDouble(merma_promedio)) {
                     
@@ -506,6 +501,8 @@ public class Controller {
                             vista.roleText.setText(currentUser.getRolText());
                             login.dispose();
                             iniciarVista();
+                        }else{
+                            showMessageDialog(null, "Usuario o contraseña incorrectos. Verifique los datos.");
                         }
 
 
@@ -513,7 +510,19 @@ public class Controller {
                     } catch (Exception ex) {
                         System.out.print(ex.getMessage());
                     }
+                }else{
+                    showMessageDialog(null, "No debe dejar campos vacíos.");
                 }
+                
+
+            }
+        });
+        
+        this.vista.exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+              vista.dispose();
+              iniciarVistaLogin();
                 
 
             }
@@ -525,6 +534,7 @@ public class Controller {
     public void iniciarVista() {
 
         vista.setVisible(true);
+        vista.cLayout.show(vista.contentLayout, "dashboardView");
 
         vista.setLocationRelativeTo(null);
 
@@ -548,6 +558,8 @@ public class Controller {
             {
                 if ((int)((JButton)control).getClientProperty("btnLevel") < (int)currentUser.getRol()){
                     control.setVisible(false);
+                }else{
+                    control.setVisible(true);
                 }
             }
            
@@ -557,7 +569,8 @@ public class Controller {
     }
     
     public void iniciarVistaLogin() {
-
+        login.userText.setText("");
+        login.passwordText.setText("");
         login.setVisible(true);
 
         login.setLocationRelativeTo(null);

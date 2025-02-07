@@ -4,8 +4,17 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/victu/OneDrive/Documentos/NetBeansProjects/canasta-feliz/src/model/Model.java</file>
+            <file>file:/C:/Users/victu/OneDrive/Documentos/NetBeansProjects/canasta-feliz/src/controller/Provider.java</file>
+            <file>file:/C:/Users/victu/OneDrive/Documentos/NetBeansProjects/canasta-feliz/src/controller/Validation.java</file>
             <file>file:/C:/Users/victu/OneDrive/Documentos/NetBeansProjects/canasta-feliz/src/view/Screen.java</file>
+            <file>file:/C:/Users/victu/OneDrive/Documentos/NetBeansProjects/canasta-feliz/src/canastafeliz/CanastaFeliz.java</file>
+            <file>file:/C:/Users/victu/OneDrive/Documentos/NetBeansProjects/canasta-feliz/src/view/ComboItem.java</file>
             <file>file:/C:/Users/victu/OneDrive/Documentos/NetBeansProjects/canasta-feliz/src/controller/Controller.java</file>
+            <file>file:/C:/Users/victu/OneDrive/Documentos/NetBeansProjects/canasta-feliz/src/view/Login.java</file>
+            <file>file:/C:/Users/victu/OneDrive/Documentos/NetBeansProjects/canasta-feliz/src/controller/Inventory.java</file>
+            <file>file:/C:/Users/victu/OneDrive/Documentos/NetBeansProjects/canasta-feliz/src/controller/User.java</file>
+            <file>file:/C:/Users/victu/OneDrive/Documentos/NetBeansProjects/canasta-feliz/src/view/parentPanel.java</file>
+            <file>file:/C:/Users/victu/OneDrive/Documentos/NetBeansProjects/canasta-feliz/src/controller/Product.java</file>
         </group>
     </open-files>
 </project-private>

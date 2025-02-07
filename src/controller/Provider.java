@@ -5,16 +5,14 @@ package controller;
 public class Provider {
     private String rif;
     private String nombre;
-    private String apellido;
     private String telefono;
     private String correo;
     private String direccion;
     
 //CONSTRUCTOR
-    public Provider(String rif, String nombre, String apellido, String telefono, String correo, String direccion) {
+    public Provider(String rif, String nombre, String telefono, String correo, String direccion) {
         this.rif = rif;
         this.nombre = nombre;
-        this.apellido = apellido;
         this.telefono = telefono;
         this.correo = correo;
         this.direccion = direccion;
@@ -35,14 +33,6 @@ public class Provider {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
     }
 
     public String getTelefono() {

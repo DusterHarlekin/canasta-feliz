@@ -6,13 +6,10 @@ import static javax.swing.JOptionPane.showMessageDialog;
 
 public class Validation {
     
-    public static boolean validarNombres(String text, boolean isSurname) {
+    public static boolean validarNombres(String text) {
         Pattern NAME_PATTERN = Pattern.compile("([a-zA-Z0-9_\\s]+)");
         
-        if(isSurname && text.trim().equals("")){
-            return true;
-        }
-        else if(!NAME_PATTERN.matcher(text).matches()){
+        if(!NAME_PATTERN.matcher(text).matches()){
             showMessageDialog(null, "El campo no debe estar vacío");
         }
         return NAME_PATTERN.matcher(text).matches();

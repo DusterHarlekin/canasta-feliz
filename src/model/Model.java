@@ -70,7 +70,7 @@ public class Model {
     }
     
     public ResultSet getProducts() throws SQLException{
-        String query = "select productos.id_producto, productos.nombre, productos.precio, productos.merma_promedio, proveedores.nombre, proveedores.apellido"
+        String query = "select productos.id_producto, productos.nombre, productos.precio, productos.merma_promedio, proveedores.nombre"
                 + " from productos inner join proveedores on productos.fk_id_proveedor=proveedores.id_proveedor";
         ResultSet rs = null;
  
@@ -177,17 +177,16 @@ public class Model {
     }
     
     public void postProvider(Provider p) throws SQLException, Exception {
-        String query = "insert into proveedores (rif, nombre, apellido, telefono, correo, direccion) values (?,?,?,?,?,?)";
+        String query = "insert into proveedores (rif, nombre, telefono, correo, direccion) values (?,?,?,?,?)";
         try {
             con = connect();
             
             ps = con.prepareStatement(query);
             ps.setString(1, p.getRif());
             ps.setString(2, p.getNombre());
-            ps.setString(3, p.getApellido());
-            ps.setString(4, p.getTelefono());
-            ps.setString(6, p.getDireccion());
-            ps.setString(5, p.getCorreo());
+            ps.setString(3, p.getTelefono());
+            ps.setString(4, p.getCorreo());
+            ps.setString(5, p.getDireccion());
 
             ps.executeUpdate();
            
